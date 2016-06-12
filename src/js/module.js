@@ -227,11 +227,11 @@ function displayWinner(playerOneWon, playerTwoWon){
 		if(humanPlaying){
 			ui.winners.human.style.display = 'block';
 		} else {
-			ui.winners.human.style.display = 'block';
+			ui.winners.playerOne.style.display = 'block';
 		}
 	} else if (playerTwoWon) {
-		ui.winners.human.style.display = 'block';
+		ui.winners.playerTwo.style.display = 'block';
 	} else {
-		ui.winners.human.style.display = 'block';
+		ui.winners.none.style.display = 'block';
 	}
 }
