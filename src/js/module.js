@@ -20,6 +20,12 @@ const ui = {
 		playerTwo: {
 			gameArea: document.getElementById('gameBoard2'),
 			choiceDisplayArea: document.getElementById('playerTwoChoice')
+		},
+		winners: {
+			human: document.getElementById('humanWon'),
+			playerOne: document.getElementById('playerOneWon'),
+			playerTwo: document.getElementById('playerTwoWon'),
+			none: document.getElementById('draw')
 		}
 	},
 
@@ -42,7 +48,8 @@ const ui = {
 		}
 	};
 
-let firstPlayersChoice = '',
+let humanPlaying = false,
+	firstPlayersChoice = '',
 	secondPlayersChoice = '';
 
 export default function initHandlers(){
@@ -60,6 +67,7 @@ function startGame(mode){
 
 	switch(mode){
 		case values.human:
+			humanPlaying = true;
 			getHumanPlayersTurn();
 			break;
 		case values.computer:
@@ -132,6 +140,63 @@ function getRandomChoice(){
 }
 
 function gamePlayed(){
-	console.error('This isnt right, but will stop the linting error');
-	let foo = firstPlayersChoice > secondPlayersChoice;
+	let playerOneWon = false,
+		playerTwoWon = false;
+
+	switch(firstPlayersChoice){
+		case values.options.rock.id:
+			switch(secondPlayersChoice){
+				case values.options.rock.id:
+					break;
+				case values.options.paper.id:
+					playerTwoWon = true;
+					break;
+				case values.options.scissors.id:
+					playerOneWon = true;
+					break;
+			}
+			break;
+		case values.options.paper.id:
+			switch(secondPlayersChoice){
+				case values.options.rock.id:
+					playerOneWon = true;
+					break;
+				case values.options.paper.id:
+					break;
+				case values.options.scissors.id:
+					playerTwoWon = true;
+					break;
+			}
+			break;
+		case values.options.scissors.id:
+			switch(secondPlayersChoice){
+				case values.options.rock.id:
+					playerTwoWon = true;
+					break;
+				case values.options.paper.id:
+					playerOneWon = true;
+					break;
+				case values.options.scissors.id:
+					break;
+			}
+			break;
+		default:
+			break;
+	}
+
+	displayWinner(playerOneWon, playerTwoWon);
+}
+
+function displayWinner(playerOneWon, playerTwoWon){
+	if(playerOneWon){
+		if(humanPlaying){
+			ui.winners.human.style.display = 'block';
+		} else {
+			ui.winners.human.style.display = 'block';
+		}
+	} else if (playerTwoWon) {
+		ui.winners.human.style.display = 'block';
+	} else {
+		ui.winners.human.style.display = 'block';
+	}
 }
