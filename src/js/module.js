@@ -63,7 +63,7 @@ function setGameMode(){
 }
 
 function startGame(mode){
-	//disable drop down here
+	ui.gameModeSelect.disabled = 'disabled';
 
 	switch(mode){
 		case values.human:
@@ -72,10 +72,7 @@ function startGame(mode){
 			break;
 		case values.computer:
 			setPlayerOnesTurn();
-
-			//put delay in here
-
-			setPlayerTwosTurn();
+			setTimeout(setPlayerTwosTurn, 1000);
 			break;
 		default:
 			break;
@@ -120,8 +117,6 @@ function setHumanSelection(e){
 
 function humansChoiceMade(){
 	ui.human.optionsArea.style.display = 'none';
-
-	//put delay here
 
 	setPlayerTwosTurn();
 }
