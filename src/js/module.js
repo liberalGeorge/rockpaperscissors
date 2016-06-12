@@ -34,15 +34,15 @@ const ui = {
 		computer: 'computer',
 		options: {
 			rock: {
-				name: 'rock',
+				name: 'Rock',
 				id: 1
 			},
 			paper: {
-				name: 'paper',
+				name: 'Paper',
 				id: 2
 			},
 			scissors: {
-				name: 'scissors',
+				name: 'Scissors',
 				id: 3
 			}
 		}
@@ -99,14 +99,17 @@ function initHumanEventHandlers(){
 
 function setHumanSelection(e){
 	switch(e.target.id){
-		case values.options.rock.name:
+		case values.options.rock.name.toLowerCase():
 			firstPlayersChoice = values.options.rock.id;
+			ui.human.choiceDisplayArea.innerHTML = values.options.rock.name;
 			break;
-		case values.options.paper.name:
+		case values.options.paper.name.toLowerCase():
 			firstPlayersChoice = values.options.paper.id;
+			ui.human.choiceDisplayArea.innerHTML = values.options.paper.name;
 			break;
-		case values.options.scissors.name:
+		case values.options.scissors.name.toLowerCase():
 			firstPlayersChoice = values.options.scissors.id;
+			ui.human.choiceDisplayArea.innerHTML = values.options.scissors.name;
 			break;
 		default:
 			break;
@@ -125,10 +128,42 @@ function humansChoiceMade(){
 
 function setPlayerOnesTurn(){
 	firstPlayersChoice = getRandomChoice();
+
+	switch(firstPlayersChoice){
+		case values.options.rock.id:
+			ui.playerOne.choiceDisplayArea.innerHTML = values.options.rock.name;
+			break;
+		case values.options.paper.id:
+			ui.playerOne.choiceDisplayArea.innerHTML = values.options.paper.name;
+			break;
+		case values.options.scissors.id:
+			ui.playerOne.choiceDisplayArea.innerHTML = values.options.scissors.name;
+			break;
+		default:
+			break;
+	}
+
+	ui.playerOne.gameArea.style.display = 'block';
 }
 
 function setPlayerTwosTurn(){
 	secondPlayersChoice = getRandomChoice();
+
+	switch(secondPlayersChoice){
+		case values.options.rock.id:
+			ui.playerTwo.choiceDisplayArea.innerHTML = values.options.rock.name;
+			break;
+		case values.options.paper.id:
+			ui.playerTwo.choiceDisplayArea.innerHTML = values.options.paper.name;
+			break;
+		case values.options.scissors.id:
+			ui.playerTwo.choiceDisplayArea.innerHTML = values.options.scissors.name;
+			break;
+		default:
+			break;
+	}
+
+	ui.playerTwo.gameArea.style.display = 'block';
 
 	gamePlayed();
 }
