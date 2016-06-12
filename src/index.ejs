@@ -7,6 +7,78 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<h1>you are ready to go! :)</h1>
+	<h1>Rock, Paper, Scissors</h1>
+
+	<section id="gameMode">
+		<h2>Select Game Mode</h2>
+
+		<select id="gameModeSelect">
+			<option value="">
+				Select Mode
+			</option>
+
+			<option value="human">
+				Human Vs Computer
+			</option>
+
+			<option value="computer">
+				Computer Vs Computer
+			</option>
+		</select>
+	</section>
+
+	<section id="humanGameBoard"
+			 class="gameBoard"
+			 style="display:none">
+		<h2>Human Player</h2>
+
+		<div id="humanOptions">
+			<button id="rock">Rock</button>
+
+			<button id="paper">Paper</button>
+
+			<button id="scissors">Scissors</button>
+		</div>
+
+		<div class="humanChoice">
+			<h3></h3>
+		</div>
+	</section>
+
+	<section id="gameBoard1"
+			 class="gameBoard"
+			 style="display:none">
+		<h2>Player One</h2>
+
+		<div id="rock">
+			<button>Rock</button>
+		</div>
+
+		<div id="paper">
+			<button>Paper</button>
+		</div>
+
+		<div id="scissors">
+			<button>Scissors</button>
+		</div>
+	</section>
+
+	<section id="gameBoard2"
+			 class="gameBoard"
+			 style="display:none">
+		<h2>Player Two</h2>
+
+		<div id="rock">
+			<button>Rock</button>
+		</div>
+
+		<div id="paper">
+			<button>Paper</button>
+		</div>
+
+		<div id="scissors">
+			<button>Scissors</button>
+		</div>
+	</section>
 </body>
 </html>

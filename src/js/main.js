@@ -1,5 +1,5 @@
 require('../css/main.scss');
 
-import print from './module';
+import initHandlers from './module';
 
-print('it works well!');
+initHandlers();
