@@ -26,21 +26,24 @@ const ui = {
 	values = {
 		human: 'human',
 		computer: 'computer',
-		rock: {
-			name: 'rock',
-			id: 1
-		},
-		paper: {
-			name: 'paper',
-			id: 2
-		},
-		scissors: {
-			name: 'scissors',
-			id: 3
+		options: {
+			rock: {
+				name: 'rock',
+				id: 1
+			},
+			paper: {
+				name: 'paper',
+				id: 2
+			},
+			scissors: {
+				name: 'scissors',
+				id: 3
+			}
 		}
 	};
 
-let firstPlayersChoice = '';
+let firstPlayersChoice = '',
+	secondPlayersChoice = '';
 
 export default function initHandlers(){
 	ui.gameModeSelect.onchange = setGameMode;
@@ -53,6 +56,8 @@ function setGameMode(){
 }
 
 function startGame(mode){
+	//disable drop down here
+
 	switch(mode){
 		case values.human:
 			getHumanPlayersTurn();
@@ -67,8 +72,6 @@ function startGame(mode){
 		default:
 			break;
 	}
-
-	//disable drop down here
 }
 
 function getHumanPlayersTurn(){
@@ -88,20 +91,18 @@ function initHumanEventHandlers(){
 
 function setHumanSelection(e){
 	switch(e.target.id){
-		case values.rock.name:
-			firstPlayersChoice = values.rock.id;
+		case values.options.rock.name:
+			firstPlayersChoice = values.options.rock.id;
 			break;
-		case values.paper.name:
-			firstPlayersChoice = values.paper.id;
+		case values.options.paper.name:
+			firstPlayersChoice = values.options.paper.id;
 			break;
-		case values.scissors.name:
-			firstPlayersChoice = values.scissors.id;
+		case values.options.scissors.name:
+			firstPlayersChoice = values.options.scissors.id;
 			break;
 		default:
 			break;
 	}
-
-	console.log(firstPlayersChoice);
 
 	humansChoiceMade();
 }
@@ -114,7 +115,23 @@ function humansChoiceMade(){
 	setPlayerTwosTurn();
 }
 
-function setPlayerOnesTurn(){}
+function setPlayerOnesTurn(){
+	firstPlayersChoice = getRandomChoice();
+}
 
-function setPlayerTwosTurn(){}
+function setPlayerTwosTurn(){
+	secondPlayersChoice = getRandomChoice();
 
+	gamePlayed();
+}
+
+function getRandomChoice(){
+	let randomNumber = Math.random() * Object.keys(values.options).length;
+
+	return Math.ceil(randomNumber);
+}
+
+function gamePlayed(){
+	console.error('This isnt right, but will stop the linting error');
+	let foo = firstPlayersChoice > secondPlayersChoice;
+}
