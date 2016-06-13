@@ -1,8 +1,6 @@
 const ui = {
 		gameModeSelect: document.getElementById('gameModeSelect'),
-		humanPlayerBoard: document.getElementById('humanGameBoard'),
-		playerOneBoard: document.getElementById('gameBoard1'),
-		playerTwoBoard: document.getElementById('gameBoard2'),
+		resetGame: document.getElementById('resetGame'),
 		human: {
 			gameArea: document.getElementById('humanGameBoard'),
 			optionsArea: document.getElementById('humanOptions'),
@@ -21,7 +19,7 @@ const ui = {
 			gameArea: document.getElementById('gameBoard2'),
 			choiceDisplayArea: document.getElementById('playerTwoChoice')
 		},
-		winners: {
+		winner: {
 			human: document.getElementById('humanWon'),
 			playerOne: document.getElementById('playerOneWon'),
 			playerTwo: document.getElementById('playerTwoWon'),
@@ -54,6 +52,31 @@ let humanPlaying = false,
 
 export default function initHandlers(){
 	ui.gameModeSelect.onchange = setGameMode;
+	ui.resetGame.onclick = resetGame;
+}
+
+function resetGame(){
+	humanPlaying = false;
+	firstPlayersChoice = '';
+	secondPlayersChoice = '';
+
+	ui.human.gameArea.style.display = 'none';
+	ui.human.optionsArea.style.display = 'block';
+
+	ui.playerOne.gameArea.style.display = 'none';
+	ui.playerTwo.gameArea.style.display = 'none';
+
+	ui.human.choiceDisplayArea.innerHTML = '';
+	ui.playerOne.choiceDisplayArea.innerHTML = '';
+	ui.playerTwo.choiceDisplayArea.innerHTML = '';
+
+	ui.winner.human.style.display = 'none';
+	ui.winner.playerOne.style.display = 'none';
+	ui.winner.playerTwo.style.display = 'none';
+	ui.winner.none.style.display = 'none';
+
+	ui.gameModeSelect.value = '';
+	ui.gameModeSelect.removeAttribute('disabled');
 }
 
 function setGameMode(){
@@ -220,13 +243,13 @@ function gamePlayed(){
 function displayWinner(playerOneWon, playerTwoWon){
 	if(playerOneWon){
 		if(humanPlaying){
-			ui.winners.human.style.display = 'block';
+			ui.winner.human.style.display = 'block';
 		} else {
-			ui.winners.playerOne.style.display = 'block';
+			ui.winner.playerOne.style.display = 'block';
 		}
 	} else if (playerTwoWon) {
-		ui.winners.playerTwo.style.display = 'block';
+		ui.winner.playerTwo.style.display = 'block';
 	} else {
-		ui.winners.none.style.display = 'block';
+		ui.winner.none.style.display = 'block';
 	}
 }
